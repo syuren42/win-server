@@ -1,8 +1,4 @@
 
-resource "aws_key_pair" "mykey" {
-  key_name   = "mykey"
-  public_key = file(var.PATH_TO_PUBLIC_KEY)
-}
 
 data "template_file" "userdata_win" {
   template = <<EOF
@@ -17,7 +13,7 @@ echo "" > _INIT_COMPLETE_
 EOF
 }
 
-resource "aws_instance" "win-example" {
+resource "aws_instance" "win-server" {
   ami                    = var.WIN_AMIS[var.region]
   instance_type          = "t3.large"
   key_name               = aws_key_pair.mykey.key_name
@@ -32,15 +28,15 @@ resource "aws_instance" "win-example" {
 }
 
 # ElasticIP
-resource "aws_eip" "this" {
-    instance = "${aws_instance.win-example.id}"
+resource "aws_eip" "win-sever-ip" {
+    instance = "${aws_instance.win-server.id}"
     vpc = true
 }
 
 
 output "ip" {
 
-  value = "${aws_instance.win-example.public_ip}"
+  value = "${aws_instance.win-server.public_ip}"
 
 }
 
