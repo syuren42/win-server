@@ -1,6 +1,6 @@
 resource "aws_directory_service_directory" "bar" {
-  name     = "corp.syuren42example.com"
-  password = "jJ$$DOEJF6%3abas"
+  name     = var.AD_DOMAIN_NAME
+  password = var.ADDC_PASSWORD
   edition  = "Standard"
   type     = "MicrosoftAD"
 
