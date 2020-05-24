@@ -1,11 +1,13 @@
 - name: Install Apache from an MSI 
   hosts: all 
  
-    tasks:
-
+  tasks:
+  - name: copy chrome binary
+    win_copy:
+      src: /tmp/GoogleChromeStandaloneEnterprise64.msi
+      dest: C:\Windows\TEMP\chrome.msi
         
-        
-    - name: Install chrome
-        win_package: 
-        path: 'C:\Windows\TEMP\chrome_installer.exe'
-        state: present
+  - name: Install chrome
+    win_package: 
+      path: 'C:\Windows\TEMP\chrome.msi'
+      state: present
