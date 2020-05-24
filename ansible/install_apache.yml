@@ -11,3 +11,11 @@
     win_package: 
       path: 'C:\Windows\TEMP\chrome.msi'
       state: present
+
+  - name: copy Windows Server 2019 Language Pack 
+    win_copy:
+      src: /tmp/windowsserver2019-jplangpack.iso
+      dest: C:\Windows\TEMP\windowsserver2019-jplangpack.iso
+
+## 以下を参考にしてLang packをインストールするps1を実行する
+https://dev.classmethod.jp/articles/windowsserver2019_to_japanese/
