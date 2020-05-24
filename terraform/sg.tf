@@ -1,11 +1,11 @@
-resource "aws_security_group" "allow-rdp" {
-  name = "allow-all"
+resource "aws_security_group" "allow-ssh" {
+  name = "allow-ssh"
   vpc_id = aws_vpc.this.id
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.1.1.0/24"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
     from_port   = 22
@@ -16,6 +16,30 @@ resource "aws_security_group" "allow-rdp" {
 
   tags = {
     Name = "allow-ssh-insubnet"
+  }
+
+  description = "virtual-office-ssh"
+
+}
+
+resource "aws_security_group" "allow-rdp" {
+  name = "allow-rdp"
+  vpc_id = aws_vpc.this.id
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 3389
+    to_port     = 3389
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow-rdp-insubnet"
   }
 
   description = "virtual-office-rdp"
