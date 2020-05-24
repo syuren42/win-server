@@ -29,17 +29,8 @@ Invoke-RestMethod -Uri http://169.254.169.254/latest/meta-data/public-keys/0/ope
 Start-Service sshd
 Set-Service -Name sshd -StartupType 'Automatic'
 
-# Enable PubkeyAuthentication
-# Disable PasswordAuthentication
-$sshdConfigPath = Join-Path $env:ProgramData 'ssh\sshd_config'
-Get-Content $sshdConfigPath -Encoding Ascii -Raw | 
-    ForEach-Object {
-        $c = $_ -replace '#PubkeyAuthentication', 'PubkeyAuthentication'
-#        $c = $c -replace '#PasswordAuthentication yes', 'PasswordAuthentication no'
-        $c | Out-File -FilePath $sshdConfigPath -Encoding ascii
-    }
-
 ## modify permission of the authorized key file
+$administratorsKeyPath =  Join-Path $env:ProgramData 'ssh\administrators_authorized_keys'
 $acl = Get-Acl $administratorsKeyPath
 Get-Acl $administratorsKeyPath
 $acl.SetAccessRuleProtection($true,$true)
@@ -47,8 +38,6 @@ $removeRule =  $acl.Access | Where-Object { $_.IdentityReference -eq 'NT AUTHORI
 $acl.RemoveAccessRule($removeRule)
 $acl | Set-Acl -Path $administratorsKeyPath
 Get-Acl $administratorsKeyPath
-# サービス再起動
-Restart-Service sshd
 
 </powershell>
 <persist>false</persist>

@@ -1,0 +1,4 @@
+- hosts: win_2019
+  tasks:
+   - name: Ping Windows Hosts
+     win_ping:
