@@ -1,0 +1,11 @@
+- name: Install Apache from an MSI 
+  hosts: all 
+ 
+    tasks:
+
+        
+        
+    - name: Install chrome
+        win_package: 
+        path: 'C:\Windows\TEMP\chrome_installer.exe'
+        state: present

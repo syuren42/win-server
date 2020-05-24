@@ -1,0 +1,5 @@
+- hosts: win_2019
+  tasks:
+  - name: Set timezone to Tokyo Time (JST)
+    win_timezone:
+      timezone: Tokyo Standard Time
