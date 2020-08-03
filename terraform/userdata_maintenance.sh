@@ -4,7 +4,7 @@ sudo apt update
 sudo apt -y install software-properties-common
 sudo apt-add-repository -y ppa:ansible/ansible
 
-sudo apt -y install git
+sudo apt -y install git jq awscli
 sudo apt -y install ansible
 
 cd /home/ubuntu
