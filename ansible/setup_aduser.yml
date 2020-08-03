@@ -1,0 +1,14 @@
+ad_user:
+  - name: ad_example_user1
+    last_name: user1_last_name
+    first_name: user1_first_name
+    list_group:
+        - example_gourp_1
+        - example_gourp_2
+    email: ad_example_user1@example.com
+  - name: ad_example_user2
+    last_name: user2_last_name
+    first_name: user2_first_name
+    list_group:
+        - example_gourp_1
+    email: ad_example_user2@example.com

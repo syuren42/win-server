@@ -1,0 +1,9 @@
+- name: create group
+  win_domain_group:
+    name: "{{ item }}"
+    scope: domainlocal
+    domain_username: "{{ ad_domain }}\{{ ad_admin_user }}"
+    domain_password: "{{ ad_admin_pass }}"
+  with_items:
+    "{{ ad_group }}"
+
