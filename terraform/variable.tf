@@ -10,14 +10,10 @@ variable "WIN_AMIS" {
 }
 
 
-
-variable "AMAZONLINUX2_AMIS" {
-  type = map
-  default = {
-    ap-northeast-1 = "ami-0f310fced6141e627"
-  }
+variable "instance_ami" {
+  type    = string
+  default = "ami-0cfa3caed4b487e77"
 }
-
 
 # variable "PATH_TO_PRIVATE_KEY" { default = "mykey" }
 variable "INSTANCE_USERNAME" {}

@@ -1,4 +1,4 @@
-ansible_ssh_user: "administrator"
+ansible_ssh_user: "admin"
 ansible_connection: "ssh"
 ansible_shell_type: "cmd"
 

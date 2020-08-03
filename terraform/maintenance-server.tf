@@ -1,6 +1,6 @@
 
 resource "aws_instance" "maintenance-server" {
-  ami                  = var.AMAZONLINUX2_AMIS[var.region]
+  ami                  = var.instance_ami
   instance_type        = "t3.medium"
   key_name             = aws_key_pair.ssh-key.key_name
   subnet_id            = aws_subnet.public_a.id

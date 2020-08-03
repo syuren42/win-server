@@ -18,4 +18,26 @@
       dest: C:\Windows\TEMP\windowsserver2019-jplangpack.iso
 
 ## 以下を参考にしてLang packをインストールするps1を実行する
-https://dev.classmethod.jp/articles/windowsserver2019_to_japanese/
+## https://dev.classmethod.jp/articles/windowsserver2019_to_japanese/
+
+- name: Run powershell script
+  hosts: all 
+  gather_facts: false
+  tasks:
+    - name: Run powershell script1
+      script: files/01_winsetup1.ps1
+
+- name: restart machine
+  script: files/99_shutdown.ps1
+  async: 1
+  poll: 0
+  sudo: true
+  ignore_errors: true
+
+- name: waiting for server to come back
+  local_action: wait_for host={{ inventory_hostname }} state=started delay=10 timeout=300
+  sudo: false
+
+- name: Run powershell script2
+  script: files/02_winsetup2.ps1
+
