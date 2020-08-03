@@ -49,7 +49,7 @@ resource "aws_instance" "win-server" {
   instance_type          = "t3.large"
   key_name               = aws_key_pair.ssh-key.key_name
   user_data              = data.template_file.userdata_win.rendered
-  vpc_security_group_ids = ["${aws_security_group.allow-rdp.id}", "${aws_security_group.allow-ssh.id}"]
+  vpc_security_group_ids = ["${aws_security_group.allow-rdp.id}", "${aws_security_group.allow-ssh.id}", aws_security_group.product_storage_gateway_access.id]
   subnet_id              = aws_subnet.public_a.id
   iam_instance_profile   = aws_iam_instance_profile.systems_manager.name
   tags = {
