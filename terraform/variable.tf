@@ -19,13 +19,16 @@ variable "AMAZONLINUX2_AMIS" {
 }
 
 
-variable "PATH_TO_PRIVATE_KEY" { default = "mykey" }
-variable "PATH_TO_PUBLIC_KEY" { default = "mykey.pub" }
-variable "INSTANCE_USERNAME" { default = "syuren42admin" }
-variable "INSTANCE_PASSWORD" {}
-variable "ADDC_PASSWORD" {}
-variable "AD_DOMAIN_NAME" {}
+# variable "PATH_TO_PRIVATE_KEY" { default = "mykey" }
+variable "INSTANCE_USERNAME" { default = "admin" }
+variable "INSTANCE_PASSWORD" { default = "SVh3HzEkQV6b" }
+variable "ADDC_PASSWORD" { default = "SVh3HzEkQV6b" }
+variable "AD_DOMAIN_NAME" { default = "ad-test.local" }
 
 
+variable "pubkey_file_path" {
+  type    = string
+  default = "~/.ssh/id_rsa.pub"
+}
 
 

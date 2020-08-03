@@ -47,11 +47,11 @@ EOF
 resource "aws_instance" "win-server" {
   ami                    = var.WIN_AMIS[var.region]
   instance_type          = "t3.large"
-  key_name               = aws_key_pair.mykey.key_name
+  key_name               = aws_key_pair.ssh-key.key_name
   user_data              = data.template_file.userdata_win.rendered
-  vpc_security_group_ids = ["${aws_security_group.allow-rdp.id}","${aws_security_group.allow-ssh.id}"]
-  subnet_id               = aws_subnet.public_a.id
-  iam_instance_profile = aws_iam_instance_profile.systems_manager.name
+  vpc_security_group_ids = ["${aws_security_group.allow-rdp.id}", "${aws_security_group.allow-ssh.id}"]
+  subnet_id              = aws_subnet.public_a.id
+  iam_instance_profile   = aws_iam_instance_profile.systems_manager.name
   tags = {
     Name = "Windows_Server"
   }
@@ -60,15 +60,12 @@ resource "aws_instance" "win-server" {
 
 # ElasticIP
 resource "aws_eip" "win-sever-ip" {
-    instance = "${aws_instance.win-server.id}"
-    vpc = true
+  instance = "${aws_instance.win-server.id}"
+  vpc      = true
 }
 
-
 output "ip" {
-
   value = "${aws_instance.win-server.public_ip}"
-
 }
 
 
