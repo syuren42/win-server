@@ -15,7 +15,4 @@ Set-WinSystemLocale -SystemLocale ja-JP
 #タイムゾーンを東京にします。
 Set-TimeZone -Id "Tokyo Standard Time"
 
-#サーバーを再起動します。
-Restart-Computer
-
 
